@@ -1,12 +1,17 @@
 -#  This file is app/views/movies/index.html.haml
 %h1 All Movies
 
-= form_tag movies_path, :method => :get do
-  Include:
-  - @all_ratings.each do |rating|
-    = rating
-    = check_box_tag "ratings[#{rating}]",1, @ratings ? (@ratings.keys.include?(rating) ? true : false) : true
-= submit_tag 'Refresh'
+-#= form_tag movies_path, :method => :get do
+-#  Include:
+-#  - @all_ratings.each do |rating|
+-#    = rating
+-#    = check_box_tag "ratings[#{rating}]",1, @ratings ? (@ratings.keys.include?(rating) ? true : false) : true
+-#= submit_tag 'Refresh'
+
+<form>
+ <input type="checkbox" name="love" value="love" id="love"><label for="love"> Check if you love this website!</label>
+</form>
+
 
 
 %table#movies
