@@ -17,17 +17,13 @@ class MoviesController < ApplicationController
     @ratings = params[:ratings] || session[:ratings]
       
     @all_ratings = Movie.ratings
+     
+    session[:ratings] = @ratings
+    @movies = @movies.where(rating: @ratings.keys)
       
-    if @sort
-        session[:sort] = @sort
-        @movies = Movie.order(@sort.to_sym) # DB order command
-    end
-      
-    if @ratings
-       session[:ratings] = @ratings
-       @movies = Movie.where(rating: @ratings.keys) 
-    end
-      
+    session[:sort] = @sort  
+    @movies = @movies.order(@sort.to_sym) 
+    
     if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
        session[:sort] = @sort
        session[:ratings] = @ratings
