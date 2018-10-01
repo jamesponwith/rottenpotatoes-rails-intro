@@ -19,7 +19,7 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.ratings
      
     session[:ratings] = @ratings
-    @movies = @movies.where(rating: @ratings.keys)
+    @movies = @movies.where(rating: session[:ratings].keys)
       
     session[:sort] = @sort  
     @movies = @movies.order(@sort.to_sym) 
