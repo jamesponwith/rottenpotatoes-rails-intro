@@ -16,7 +16,8 @@ class MoviesController < ApplicationController
     @sort = params[:sort] || session[:sort]
     @ratings = params[:ratings] || session[:ratings]
     if @ratings == nil
-        @ratings = Movie.ratings
+        params[:ratings] = {'G':'', 'PG':'', 'PG-13':'', 'R':''}
+        @ratings = params[:ratings]
     end
       
     @all_ratings = Movie.ratings
