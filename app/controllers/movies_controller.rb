@@ -15,6 +15,8 @@ class MoviesController < ApplicationController
     
     @sort = params[:sort] || session[:sort]
     @ratings = params[:ratings] || session[:ratings]
+    if @ratings == nil
+        @ratings = Movie.ratings
       
     @all_ratings = Movie.ratings
     @movies = @movies.find_all{|m| @ratings.include?(m.rating)} 
